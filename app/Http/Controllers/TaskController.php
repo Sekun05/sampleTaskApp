@@ -20,7 +20,8 @@ class TaskController extends Controller
         $current_folder = Folder::find($id);
 
         // current_folder からタスクを取得
-        $tasks = Task::where('folder_id', $current_folder->id)->get();     // get() を忘れないように
+        // $tasks = Task::where('folder_id', $current_folder->id)->get();     // get() を忘れないように
+        $tasks = $current_folder->tasks()->get();   // リレーションを使用する
 
         return view('tasks/index', [
             'folders' => $folders,
